@@ -66,6 +66,9 @@ void UHeroInvestigationComponent::StartInvestigation(bool bShowInvestigationPane
 
 void UHeroInvestigationComponent::PerformInvestigationTrace()
 {
+
+	float TraceDistance = 1000.0f;
+	
 	if (!IsValid(InvestigationWidget))
 	{
 		return;
@@ -85,7 +88,7 @@ void UHeroInvestigationComponent::PerformInvestigationTrace()
 
 	FVector Start = CameraComponent->GetComponentLocation();
 	FVector ForwardVector = CameraComponent->GetForwardVector();
-	FVector End = Start + (ForwardVector * 1000.0f);
+	FVector End = Start + (ForwardVector * TraceDistance);
 
 	FHitResult HitResult;
 	FCollisionQueryParams Params;
@@ -124,7 +127,6 @@ void UHeroInvestigationComponent::PerformInvestigationTrace()
 			if (InvestigationComponent)
 			{
 				InvestigationWidget->OnSetInvestigationData(InvestigationComponent);
-				
 			}
 		}
 		LastHitActor = HitActor;
